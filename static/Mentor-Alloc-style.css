@@ -1,0 +1,191 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #3a0ca3, #240046, #0077b6);
+    color: #ffffff;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+    margin-right: 50px;
+    min-height: 500px;
+}
+
+.left-side {
+    width: 50%;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-right: 2px solid #e0e0e0;
+    overflow-y: auto;
+    color: #240046;
+}
+
+.left-side h2 {
+    color: #3a0ca3;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.mentors-box, .students-box {
+    max-height: 250px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    overflow-y: scroll;
+    margin-bottom: 25px;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#sortOptions {
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #240046;
+}
+
+#SaveResult{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: rgb(10, 155, 10);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#SaveResult:hover{
+    background-color: rgb(8, 67, 8);
+}
+
+#ClearTable{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#ClearTable:hover{
+    background-color: rgb(130, 1, 1);
+}
+
+
+.right-side {
+    width: 50%;
+    padding: 25px;
+    overflow-y: auto;
+    color: #240046;
+    max-height: 90vh;
+    background-color: rgba(255, 255, 255, 0.95);  /* Lighter background for better contrast */
+    border-left: 2px solid #e0e0e0;               /* Add a subtle border to separate sides */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);    /* Soft shadow for depth */
+    border-radius: 8px;                           /* Rounded corners */
+}
+
+/* Styling the header of the right side */
+.right-side h2 {
+    color: #3a0ca3;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;                           /* Center the title */
+    border-bottom: 2px solid #ddd;                /* Add a bottom border for a clean separation */
+    padding-bottom: 10px;
+}
+
+/* Allocation results box */
+#allocationResults {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;                                    /* Add spacing between allocation blocks */
+    background-color: #f9f9f9;                    /* Light background for better readability */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);    /* Soft shadow for depth */
+    border: 1px solid #ddd;
+}
+
+/* Individual allocation results */
+#allocationResults .mentor-allocation {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    color: #240046;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);    /* Soft shadow for each allocation block */
+    transition: transform 0.2s ease;              /* Smooth transition on hover */
+}
+
+#allocationResults .mentor-allocation:hover {
+    transform: scale(1.02);                       /* Slight scale-up on hover for interaction */
+}
+
+/* Better typography for the results */
+#allocationResults p {
+    margin: 2px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+p{
+    font-size: 14px;
+}
+
+/* Buttons in the right side */
+#buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;                    /* Border separating buttons from content */
+}
+
+#backButton, #nextButton {
+    background-color: #ffc107;
+    color: white;
+    padding: 12px;
+    border-radius: 4px;
+    width: 48%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+#backButton:hover, #nextButton:hover {
+    background-color: #240046;
+}

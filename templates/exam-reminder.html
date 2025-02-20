@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Exams Setup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='exam-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+</head>
+<body>
+    <!-- Include Sidebar -->
+    {% include 'sidebar.html' %}
+    
+        <div class="container">
+            <h2>Mentor Meeting Reminder</h2>
+
+            <!-- Step 1: Ask for number of internal exams -->
+            <label for="numExams">Number of Internal Exams:</label>
+            <input type="number" id="numExams" min="1" max="10" />
+
+            <button id="generateDateFields">Enter Dates</button>
+
+            <!-- Step 2: Dynamic input fields for each exam date -->
+            <div id="examDateFields" class="exam-date-inputs"></div>
+
+            <button id="saveExamDates" style="display:none;">Save Exam Dates</button>
+            <button id="clearDates" style="display:none;">Clear Dates</button>
+
+            <!-- Placeholder for reminder message -->
+            <div id="reminderMessage" class="reminder-message"></div>
+
+            <button id="backButton">Back</button>
+        </div>
+    
+    <script src="{{ url_for('static', filename='exam-script.js') }}"></script>
+</body>
+</html>

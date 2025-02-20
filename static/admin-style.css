@@ -1,0 +1,350 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #3a0ca3, #240046, #0077b6); /* Matching Login Page Gradient */
+    color: #ffffff;
+}
+
+/* Container */
+.container {
+    display: flex;
+    width: 80%; /* Increased width */
+    max-width: 1400px; /* Allow more space */
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); /* Added shadow for depth */
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px; /* Added padding for breathing room */
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+/* Left Side - Admin Details */
+.left-side {
+    width: 55%; /* Increased width */
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+    border-right: 2px solid #e0e0e0;
+    overflow-y: auto;
+    color: #240046;
+}
+
+.left-side h2 {
+    margin-bottom: 18px;
+    color: #3a0ca3;
+    font-size: 20px; /* Reduced font size */
+}
+
+.admin-details-section,
+.admin-credentials-section {
+    margin-bottom: 25px;
+    background-color: #ffffff; /* White box background for sections */
+    border-radius: 8px;
+    padding: 20px; /* Adjusted padding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.admin-details-section h3,
+.admin-credentials-section h3 {
+    color: #0077b6;
+    margin-bottom: 12px;
+    font-size: 18px; /* Reduced font size */
+}
+
+.admin-detail p,
+.admin-credential p {
+    font-size: 14px; /* Reduced font size */
+    margin: 6px 0;
+    color: #333;
+}
+
+#adminDetailsEdit input,
+#adminCredentialsEdit input {
+    width: 100%;
+    padding: 10px; /* Adjusted padding */
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.admin-detail {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.detail-row strong {
+    min-width: 120px; /* Adjust width as needed */
+    margin-right: 10px;
+    text-align: left;
+}
+
+.detail-row span {
+    white-space: pre-wrap; /* Allows text to wrap and keeps indentation */
+}
+
+
+/* Buttons */
+button {
+    padding: 10px 14px; /* Adjusted padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* Reduced font size */
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Button shadow for depth */
+}
+
+#editAdminDetails,
+#editAdminCredentials {
+    background-color: #3a0ca3;
+    color: white;
+    margin-top: 10px;
+}
+
+#saveAdminDetails,
+#cancelEditDetails,
+#saveAdminCredentials,
+#cancelEditCredentials {
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#cancelEditDetails,
+#cancelEditCredentials {
+    background-color: #dc3545;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Right Side - Mentors and Students */
+.right-side {
+    width: 45%; /* Adjusted width */
+    padding: 25px;
+    overflow-y: auto; /* Right side now scrollable */
+    color: #240046;
+    max-height: 90vh; /* Ensures the right side scrolls if it exceeds the height */
+}
+
+.right-side h3 {
+    color: #3a0ca3;
+    font-size: 18px; /* Reduced font size */
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.mentors-box,
+.students-box {
+    max-height: 250px; /* Adjusted height */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.95);
+    overflow-y: scroll;
+    margin-bottom: 25px; /* Increased vertical spacing */
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+p, select {
+    font-size: 14px; /* Reduced font size */
+}
+
+#Branch, #batch {
+    width: 100%;
+    padding: 10px; /* Adjusted padding */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#ClearField{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    background-color: rgb(205, 121, 12);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#ClearField:hover{
+    background-color: #ffc107;
+}
+
+#mentorCount {
+    font-weight: bold;
+}
+
+#addMentor,
+#mentorFileInput,
+#studentFileInput {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px; /* Adjusted padding */
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#addMentor:hover,
+#addStudent:hover,
+#backButton:hover,
+#clearMentor:hover,
+#clearStudent:hover {
+    background-color: #240046;
+}
+
+#addStudent {
+    background-color: #0077b6;
+    color: white;
+    width: 75%;
+    margin-top: 25px; /* Increased spacing above the "Add Student" button */
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Scrollbar Styling */
+.mentors-box::-webkit-scrollbar,
+.students-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mentors-box::-webkit-scrollbar-thumb,
+.students-box::-webkit-scrollbar-thumb {
+    background-color: #0077b6;
+    border-radius: 4px;
+}
+
+/* Back and Next Buttons */
+#buttonContainer {
+    display: flex;
+    justify-content: space-around; /* Ensures space between the buttons */
+    margin-top: 25px; /* Adds space above the buttons */
+}
+
+#backButton,
+#nextButton,
+#take {
+    background-color: #ffc107;
+    color: white;
+    width: 35%; /* Reduced width for both buttons */
+    padding: 12px; /* Padding remains for consistent button size */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center; /* Centers the text */
+}
+
+#backButton:hover,
+#nextButton:hover,
+#take:hover {
+    background-color: #240046; /* Changes background color on hover */
+}
+/* Style for Add Mentor and Add Student buttons */
+button#addMentor,
+button#addStudent,
+button#saveStudent,
+button#saveMentor {
+    width: 120px;
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green background for consistency */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button#clearMentor,
+button#clearStudent {
+    width: 180px;
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green background for consistency */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Adjust the input box size to match */
+input#mentorNameInput,
+input#studentNameInput {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+    display: none;
+}
+/* Align the Save and Cancel buttons beside each other */
+#saveStudent, #cancelStudent, #saveMentor, #cancelMentor {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#saveStudent{
+    width: 150px !important;
+}
+
+#addMentor, #clearMentor{
+    display: inline-block;
+}
+
+#studentNameInput, #mentorNameInput {
+    margin-bottom: 10px;
+    display: none; /* Initially hidden */
+}
+
+#saveStudent, #cancelStudent, #saveMentor, #cancelMentor {
+    display: none; /* Initially hidden */
+}
+
+#studentsList p, #mentorsList p {
+    margin-bottom: 5px;
+}
+/* Align the Save and Cancel buttons beside each other */
+.button-group {
+    display: flex;
+    justify-content: flex-start; /* Align buttons side by side starting from the left */
+    gap: 10px; /* Add space between the buttons */
+    margin-top: 10px; /* Optional margin */
+}
+
+button#cancelStudent,
+button#cancelMentor{
+    width: 120px;
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-top: 10px;
+}

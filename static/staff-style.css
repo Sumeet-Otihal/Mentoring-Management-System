@@ -1,0 +1,296 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #3a0ca3, #240046, #0077b6);
+    color: #333;
+}
+
+/* Container Styling */
+.container {
+    display: flex;
+    flex-wrap: nowrap; /* Keep panels side by side */
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-left: 280px;
+}
+
+/* Left Panel */
+.left-panel {
+    flex: 1 1 40%;
+    padding: 20px;
+    background: linear-gradient(135deg, #2b6cb0, #0056a8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.left-panel h2,
+.left-panel h3 {
+    margin: 0 0 15px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.detail-row strong {
+    flex: 1;
+    font-weight: bold;
+}
+
+.detail-row span, .detail-row input, .detail-row textarea {
+    flex: 2;
+    padding: 8px;
+    margin-left: 10px;
+    min-height: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 14px;
+}
+
+.detail-row input:focus, .detail-row textarea:focus {
+    outline: 2px solid #63b3ed;
+}
+
+#saveMentorCredentials, #cancelMentorEdit {
+    display: none; /* Hidden by default */
+}
+
+#saveMentorCredentials.show, #cancelMentorEdit.show {
+    display: inline; /* Visible when toggled */
+}
+
+
+/* Right Panel */
+.right-panel {
+    flex: 1 1 60%;
+    padding: 20px;
+    background:linear-gradient(135deg, #7aa1ce, #0d3861);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center all children horizontally */
+    justify-content: center; /* Center all children vertically */
+    gap: 20px; /* Space between children */
+}
+
+/* Allocated Students Header */
+.allocated-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+}
+
+.right-panel h2 {
+    margin: 0 0 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
+
+.right-panel h5 {
+    margin: 0 0 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #b1a90f;
+    text-align: center;
+}
+
+/* Allocated Students Section */
+#menteeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    list-style: none;
+    margin: 0 auto; /* Center the box horizontally */
+    background: linear-gradient(135deg, #85c2e4, #0a4768);/*#e4c7c7,#cfa971*/
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust the width as needed */
+    max-height: 400px;
+    overflow-y: auto;
+    justify-content: center; /* Center the student cards inside */
+}
+
+/* Student Cards */
+.student-card {
+    width: calc(33.33% - 20px); /* 3 cards per row */
+    min-height: 50px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #edf2f7;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: #e5f0f6;
+}
+
+.student-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #2b6cb0;
+    align-items: center;
+}
+
+.student-card a {
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: #2b6cb0;
+    font-weight: bold;
+}
+
+.student-card:hover h3{
+    color: #032546;
+}
+
+.student-card p {
+    display: none;
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #2c5282;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.student-card:hover p {
+    color: #9fca3a; /* Change color on hover for "View Details" */
+    display: block;
+}
+
+/* Buttons */
+.button-group,
+#buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+#editDetailsButton,
+#editMentorCredentials {
+    background-color: #007acc;
+    color: white;
+}
+
+#saveDetailsButton,
+#saveMentorCredentials {
+    background-color: #28a745;
+    color: white;
+}
+
+#cancelEditButton,
+#cancelMentorEdit {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Scrollbars */
+#menteeList::-webkit-scrollbar {
+    width: 8px;
+}
+
+#menteeList::-webkit-scrollbar-thumb {
+    background-color: #38b2ac;
+    border-radius: 4px;
+}
+
+#menteeList::-webkit-scrollbar-track {
+    background-color: #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    #menteeList {
+        width: 100%; /* Expand list on small screens */
+    }
+
+    .student-card {
+        width: calc(50% - 10px); /* 2 cards per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .student-card {
+        width: 100%; /* 1 card per row */
+    }
+}
+
+#batchSelector {
+    margin-bottom: 20px;
+}
+
+#batchSelector select, button {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#batchSelector button {
+    background-color: #28a745;
+    color: white;
+}
+
+#batchSelector button:hover {
+    background-color: #218838;
+}

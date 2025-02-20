@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoring System Login</title>
+    <!-- Link to the CSS file in the static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='College Logo.png') }}" alt="College Logo" class="logo">
+        <h1>BLDEA's V P Dr PG Halakatti College of Engineering and Technology</h1>
+        <a href="https://www.bldeacet.ac.in/" target="_blank" class="college-link">Visit College Website</a>
+    </header>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Mentoring System</h2>
+            <form id="loginForm" action="/login" method="POST">
+                <!-- Username Field -->
+                <div class="input-group">
+                    <label for="username" id="usernameLabel">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required aria-label="Username">
+                    <span id="usernameError" class="error-message"></span>
+                </div>
+    
+                <!-- Password Field -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required aria-label="Password">
+                    <span id="passwordError" class="error-message"></span>
+                </div>
+    
+                <!-- Role Selection -->
+                <div class="input-group">
+                    <label for="role">Login as</label>
+                    <select id="role" name="role" required aria-label="Role">
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="admin">Mentor Coordinator</option>
+                        <option value="staff">Mentor</option>
+                        <option value="student">Student</option>
+                    </select>
+                    <span id="roleError" class="error-message"></span>
+                </div>
+    
+                <!-- Branch Selection (conditional) -->
+                <div class="input-group" id="branch-group" style="display:none;">
+                    <label for="branch">Choose Branch</label>
+                    <select id="branch" name="branch" aria-label="Branch">
+                        <option value="" disabled selected>Select your branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="AIML">AIML</option>
+                        <option value="ISE">ISE</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="EEE">EEE</option>
+                        <option value="CSE(Data Science)">CSE (Data Science)</option>
+                    </select>
+                </select>
+            </div>
+
+            <!-- Submit and Clear Buttons -->
+                <div class="button-wrapper">
+                    <button type="submit">Login</button>
+                    <button type="button" id="clearButton">Clear</button>
+                </div>
+                <span id="generalError" class="error-message"></span> <!-- General error display -->
+            </form>
+        </div>
+    </div>
+
+    <!-- Link to the JS file in the static folder -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

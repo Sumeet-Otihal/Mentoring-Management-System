@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='staff-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+</head>
+<body>
+    {% include 'sidebar3.html' %}
+    <div class="container">
+        <!-- Left Side: Mentor Details and Credentials -->
+        <div class="left-panel">
+            <h2>Mentor Details</h2>
+            <form id="mentorDetailsForm">
+                <!-- Mentor ID -->
+                <div class="detail-row">
+                    
+                    <span id="mentorID" style="display: none;">{{ mentor.id }}</span>
+                    <input type="text" id="editMentorID" value="{{ mentor.id }}" style="display:none;"/>
+
+                    <strong>SSN:</strong>
+                    <span id="mentorSSN">{{ mentor.ssn }}</span>
+                    <input type="text" id="editMentorSSN" value="{{ mentor.ssn }}" style="display:none;" />
+                </div>
+
+                <!-- Mentor Name -->
+                <div class="detail-row">
+                    <strong>Name:</strong>
+                    <span id="mentorName">{{ mentor.name }}</span>
+                    <input type="text" id="editMentorName" value="{{ mentor.name }}" style="display:none;" />
+                </div>
+
+                <!-- Mentor Branch -->
+                <div class="detail-row">
+                    <strong>Branch:</strong>
+                    <span id="mentorBranch">{{ mentor.branch }}</span>
+                    <input type="text" id="editMentorBranch" value="{{ mentor.branch }}" style="display:none;" />
+                </div>
+
+                <!-- Mentor Contact -->
+                <div class="detail-row">
+                    <strong>Contact:</strong>
+                    <span id="mentorContact">{{ mentor.contact }}</span>
+                    <input type="text" id="editMentorContact" value="{{ mentor.contact }}" style="display:none;" />
+                </div>
+
+                <!-- Mentor Email -->
+                <div class="detail-row">
+                    <strong>Email:</strong>
+                    <span id="mentorEmail">{{ mentor.email }}</span>
+                    <input type="text" id="editMentorEmail" value="{{ mentor.email }}" style="display:none;" />
+                </div>
+
+                <!-- Mentor Address -->
+                <div class="detail-row">
+                    <strong>Address:</strong>
+                    <span id="mentorAddress">{{ mentor.address }}</span>
+                    <textarea id="editMentorAddress" style="display:none;">{{ mentor.address }}</textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="button" id="editDetailsButton">Edit Details</button>
+                    <button type="button" id="saveDetailsButton" style="display:none;">Save</button>
+                    <button type="button" id="cancelEditButton" style="display:none;">Cancel</button>
+                </div>
+            </form>
+
+            <!-- Mentor Credentials Section -->
+            <div class="mentor-credentials-section">
+                <h3>Mentor Credentials</h3>
+                
+                <!-- Display Mode -->
+                <div id="mentorCredentialsDisplay">
+                    <div class="detail-row">
+                        <strong>Username:</strong>
+                        <span id="mentorUsername">{{ credentials.username }}</span>
+                    </div>
+                </div>
+
+                <!-- Editable Mode (Initially Hidden) -->
+                <div id="mentorCredentialsEdit" style="display: none;">
+                    <div class="detail-row">
+                        <strong>Username:</strong>
+                        <input type="text" id="editMentorUsername" value="{{ credentials.username }}" placeholder="New Username" />
+                    </div>
+                    <div class="detail-row">
+                        <strong>Password:</strong>
+                        <input type="password" id="editMentorPassword" value="{{ credentials.password }}" placeholder="New Password" />
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="button" id="editMentorCredentials">Edit Credentials</button>
+                    <button type="button" id="saveMentorCredentials" style="display: none;">Save</button>
+                    <button type="button" id="cancelMentorEdit" style="display: none;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Mentees List -->
+        <div class="right-panel">
+            <h2 class="allocated-header">Allocated Students</h2>
+            <h5>NOTE - Hover for more details</h5>
+            <ul id="menteeList">
+                <!-- Dynamically generated list items -->
+                {% for student in mentees %}
+                <li>
+                    <a href="/student-details/{{ student.id }}">{{ student.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div id="buttonContainer">
+                <button id="backButton">← Back</button>
+                <button id="remainderButton" style="display: none;">Remainder →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='staff-script.js') }}"></script>
+</body>
+</html>

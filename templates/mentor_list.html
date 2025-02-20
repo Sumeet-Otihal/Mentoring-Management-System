@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor-Mentee List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+    <style>
+        /* General Reset */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+        }
+
+        /* Sidebar Integration */
+        .sidebar-container {
+            width: 250px;
+            background-color: #343a40;
+            min-height: 100vh;
+            color: white;
+            position: fixed;
+        }
+
+        /* Main Content Container */
+        .container {
+            margin-left: 250px; /* Adjust to the sidebar width */
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 700px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        select {
+            flex: 1;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Print Button Styling */
+        .print-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .print-button:hover {
+            background-color: #218838;
+        }
+
+        /* Print Page Styling */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+            }
+
+            .sidebar-container, .print-button {
+                display: none;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            table {
+                width: 100%;
+                border: 1px solid #ddd;
+                margin: 0;
+            }
+
+            th, td {
+                padding: 8px 10px;
+                text-align: left;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+
+            .sidebar-container {
+                width: 100%;
+                position: relative;
+                min-height: auto;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            select, button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+    /* Search Section */
+    .search-section {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-section h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .search-section input {
+        width: 60%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    .search-section button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .search-section button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Result Container */
+    #searchResult {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: none; /* Hidden by default, shown when data is present */
+    }
+
+    #searchResult h3 {
+        font-size: 20px;
+        color: #007bff;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    #searchResult h4 {
+        font-size: 18px;
+        color: #17a2b8;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    #searchResult p {
+        font-size: 16px;
+        margin: 5px 0;
+        line-height: 1.5;
+    }
+
+    #searchResult p strong {
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Error and Info Messages */
+    #searchResult p.error {
+        color: red;
+        font-weight: bold;
+    }
+
+    #searchResult p.info {
+        color: #555;
+        font-weight: normal;
+    }
+
+
+    </style>
+</head>
+<body>
+    <!-- Include Sidebar -->
+    {% include 'sidebar.html' %}
+    
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Mentor-Mentee List</h1>
+
+        <!-- Form for Branch and Batch Selection -->
+        <form method="POST" action="{{ url_for('mentor_list') }}">
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch" required>
+                <option value="" disabled selected>Select Branch</option>
+                <option value="CSE" {% if selected_branch == 'CSE' %}selected{% endif %}>CSE</option>
+                <option value="ECE" {% if selected_branch == 'ECE' %}selected{% endif %}>ECE</option>
+                <option value="AIML" {% if selected_branch == 'AIML' %}selected{% endif %}>AIML</option>
+                <option value="ISE" {% if selected_branch == 'ISE' %}selected{% endif %}>ISE</option>
+                <option value="Civil Engineering" {% if selected_branch == 'Civil Engineering' %}selected{% endif %}>Civil Engineering</option>
+                <option value="Mechanical Engineering" {% if selected_branch == 'Mechanical Engineering' %}selected{% endif %}>Mechanical Engineering</option>
+                <option value="EEE" {% if selected_branch == 'EEE' %}selected{% endif %}>EEE</option>
+                <option value="CSE (Data Science)" {% if selected_branch == 'CSE (Data Science)' %}selected{% endif %}>CSE (Data Science)</option>
+            </select>
+
+            <label for="batch">Batch:</label>
+            <select id="batch" name="batch" required>
+                <option value="" disabled selected>Select Batch</option>
+                {% for year in batches %}
+                    <option value="{{ year }}" {% if year == selected_batch|int %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
+
+        <!-- Display Mentors and Students -->
+        {% if mentors %}
+            {% for mentor in mentors %}
+                <h2>Mentor: {{ mentor.name }} (Branch: {{ mentor.branch }})</h2>
+                {% if students_under_mentors[mentor.name] %}
+                    <table>
+                        <tr>
+                            <th>USN</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Batch</th>
+                        </tr>
+                        {% for student in students_under_mentors[mentor.name] %}
+                        <tr>
+                            <td>{{ student.usn }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.contact }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>{{ student.batch }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No students found under this mentor.</p>
+                {% endif %}
+            {% endfor %}
+        {% elif selected_branch and selected_batch %}
+            <p style="color: red;">No mentors or students found for the selected branch and batch.</p>
+        {% endif %}
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <h2>Search Student by USN</h2>
+            <input type="text" id="searchUsn" placeholder="Enter Student USN" />
+            <button onclick="searchStudent()">Search</button>
+            <div id="searchResult"></div>
+        </div>
+        
+        <!-- Print Button -->
+        <button class="print-button" onclick="window.print();">Print List</button>
+    </div>
+
+    <script>
+        // Print Page functionality
+        function printPage() {
+            window.print();
+        }
+
+        // Search Student by USN
+        function searchStudent() {
+        const usn = document.getElementById("searchUsn").value.trim();
+        const resultContainer = document.getElementById("searchResult");
+
+        // Clear previous results and hide the container
+        resultContainer.style.display = "none";
+        resultContainer.innerHTML = "";
+
+        if (!usn) {
+            resultContainer.innerHTML = "<p class='error'>Please enter a valid USN.</p>";
+            resultContainer.style.display = "block";
+            return;
+        }
+
+        // Fetch student details from the server
+        fetch(`/search-student?usn=${usn}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Student not found.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Populate and display the result container
+                resultContainer.innerHTML = `
+                    <h3>Student Information</h3>
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>USN:</strong> ${data.usn}</p>
+                    <p><strong>Contact:</strong> ${data.contact}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Batch:</strong> ${data.batch}</p>
+                    
+                    <h4>Parent Details</h4>
+                    <p><strong>Father's Name:</strong> ${data.father_name}</p>
+                    <p><strong>Father's Contact:</strong> ${data.father_contact}</p>
+                    <p><strong>Mother's Name:</strong> ${data.mother_name}</p>
+                    <p><strong>Mother's Contact:</strong> ${data.mother_contact}</p>
+                    
+                    <h4>Mentor Details</h4>
+                    <p><strong>Mentor's Name:</strong> ${data.mentor_name}</p>
+                `;
+                resultContainer.style.display = "block";
+            })
+            .catch(error => {
+                console.error(error);
+                resultContainer.innerHTML = "<p class='error'>Error: Student not found.</p>";
+                resultContainer.style.display = "block";
+            });
+    }
+
+    </script>
+</body>
+</html>

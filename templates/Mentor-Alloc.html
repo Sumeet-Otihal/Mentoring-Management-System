@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Allocation Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Mentor-Alloc-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+</head>
+<body>
+
+    <!-- Include Sidebar -->
+    {% include 'sidebar.html' %}
+
+    
+        <div class="container">
+            <div class="left-side">
+                <h2>Mentor Allocation Dashboard</h2>
+                
+                <div class="admin-details-section">
+                    <h3>Mentors</h3>
+                    <div class="mentors-box">
+                        <p>Mentor A</p>
+                        <p>Mentor B</p>
+                        <p>Mentor C</p>
+                        <!-- Add more mentors here -->
+                    </div>
+                </div>
+                
+                <div class="admin-credentials-section">
+                    <h3>Students</h3>
+                    <div class="students-box">
+                        <p>Student 1</p>
+                        <p>Student 2</p>
+                        <p>Student 3</p>
+                        <!-- Add more students here -->
+                    </div>
+                </div>
+
+                <div id="sortOptions">
+                    <h3>Sort Options</h3>
+                    <label for="sortMentors">Sort Mentors:</label>
+                    <select id="sortMentors">
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="reverse">Reverse Alphabetical</option>
+                        <option value="custom">Custom Input</option>
+                    </select>
+
+                    <label for="sortStudents">Sort Students:</label>
+                    <select id="sortStudents">
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="reverse">Reverse Alphabetical</option>
+                        <option value="custom">Custom Input</option>
+                    </select>
+                </div>
+
+                <button id="sortButton">Sort</button>
+                <button id="allocateMentorsButton">Allocate Mentors</button>
+            </div>
+
+            <div class="right-side">
+                <h2>Allocation Results</h2>
+                <div id="allocationResults"></div>
+
+                <div id="buttonContainer">
+                    <button id="backButton">Back</button>
+                    <button id="nextButton">Meeting Remainder →</button>
+                </div>
+
+                <div id="DatabaseButton">
+                    <button id="SaveResult">Save Results</button>
+                    <button id="ClearTable">Clear Database</button>
+                </div>
+            </div>
+        </div>
+    
+    <script src="{{ url_for('static', filename='Mentor-Alloc-script.js') }}"></script>
+</body>
+</html>

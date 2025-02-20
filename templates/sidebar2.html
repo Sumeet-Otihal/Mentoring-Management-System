@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+</head>
+<body>
+    <!-- sidebar2.html -->
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <img src="{{ url_for('static', filename='sidebar.png') }}" alt="Logo" height="100px" width="100px">
+            </div>
+            <ul class="nav-links">
+                <!-- Dashboard Link with Icon -->
+                <li>
+                    <a href="{{ url_for('student_details_page', student_id=student.id) }}" class="{% if request.endpoint == 'student_details_page' %}active{% endif %}">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 3.293l6 6V13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.293l6-6z"/>
+                            <path d="M7.293 1.5L1.5 7.293V8h2v3h2V8h6v3h2V8h2v-.707L8.707 1.5a1 1 0 0 0-1.414 0z"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- Academic Details Link with Icon -->
+                <li>
+                    <a href="#" id="academicButton">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>
+                            <path d="M8 9a6.992 6.992 0 0 0-4.98 2.01A7.002 7.002 0 0 0 8 16a7.002 7.002 0 0 0 4.98-6.99A6.992 6.992 0 0 0 8 9z"/>
+                        </svg>
+                        <span>Academics</span>
+                    </a>
+                </li>
+
+                <!-- Logout Link with Icon -->
+                <li>
+                    <a href="{{ url_for('logout') }}" onclick="return confirmLogout();">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.293 10.707L8.586 7.999H14a1 1 0 1 0 0-2H8.586L11.293 3.707a1 1 0 1 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414-1.414z"/>
+                            <path d="M3 12a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2H3z"/>
+                        </svg>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Attach student ID to the body tag for easy reference
+        document.body.setAttribute('data-student-id', '{{ student.id }}');
+
+        document.getElementById('academicButton').addEventListener('click', () => {
+            const studentId = document.body.getAttribute('data-student-id'); // Fetch student ID from body tag
+            
+            if (studentId) {
+                window.location.href = `/marks/${studentId}`; // Pass the student ID dynamically
+            } else {
+                    alert('Student ID is missing!');
+            }           
+        });
+
+        // Function to show confirmation before logout
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+
+</body>
+</html>

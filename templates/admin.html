@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Include Sidebar -->
+    {% include 'sidebar.html' %}
+    <div class="container">
+           
+        
+            <!-- Left Side: Admin Details -->
+            <div class="left-side">
+                <h2>Mentor Coordinator Dashboard</h2>
+
+                <!-- Admin Details Section -->
+                <div class="admin-details-section">
+                    <h3>Mentor Coordinator Details</h3>
+                    <div class="admin-detail" id="adminDetailsDisplay">
+                        <div class="detail-row">
+                            <strong>Name:</strong> <span id="adminNameDisplay">{{ admin.name }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>SSN:</strong> <span id="adminSSNDisplay">{{ admin.ssn }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Designation:</strong> <span id="adminDesignationDisplay">{{ admin.designation }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Date of Birth:</strong> <span id="adminDOBDisplay">{{ admin.dob }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Contact:</strong> <span id="adminContactDisplay">{{ admin.contact }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Address:</strong> <span id="adminAddressDisplay">{{ admin.address }}</span>
+                        </div>
+                    </div>                
+
+                    <!-- Editable Fields (Initially Hidden) -->
+                    <div id="adminDetailsEdit" style="display: none;">
+                        <input type="text" id="adminName" placeholder="Name" />
+                        <input type="text" id="adminSSN" placeholder="SSN" />
+                        <input type="text" id="adminDesignation" placeholder="Designation" />
+                        <input type="date" id="adminDOB" />
+                        <input type="text" id="adminContact" placeholder="Contact" />
+                        <input type="text" id="adminAddress" placeholder="Address" />
+                        <button id="saveAdminDetails">Save Details</button>
+                        <button id="cancelEditDetails">Cancel</button>
+                    </div>
+                    <button id="editAdminDetails">Edit Details</button>
+                </div>
+
+                <!-- Admin Credentials Section -->
+                <div class="admin-credentials-section">
+                    <h3>Mentor Coordinator Credentials</h3>
+                    <div class="admin-credential" id="adminCredentialsDisplay">
+                        <p><strong>Username:</strong> <span id="adminUsernameDisplay">{{ user.username }}</span></p>
+                    </div>
+
+                    <!-- Editable Credentials (Initially Hidden) -->
+                    <div id="adminCredentialsEdit" style="display: none;">
+                        <input type="text" id="adminUsername" placeholder="New Username" />
+                        <input type="password" id="adminPassword" placeholder="New Password" />
+                        <button id="saveAdminCredentials">Save Credentials</button>
+                        <button id="cancelEditCredentials">Cancel</button>
+                    </div>
+                    <button id="editAdminCredentials">Edit Credentials</button>
+                </div>
+            </div>
+
+            <!-- Right Side: Mentors and Students -->
+            <div class="right-side">
+                <!-- Mentor Section -->
+                <h2>Insert Details for Allocation</h2>
+                <select id="batch" name="batch" required>
+                    <option value="" disabled selected>Select Batch</option>
+                </select>
+                
+                <select id="Branch" name="branch" required>
+                    <option value="" disabled selected>Select Branch</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="AIML">AIML</option>
+                    <option value="ISE">ISE</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE(Data Science)">CSE (Data Science)</option>
+                </select>
+
+                <div id="BatchBranch">
+                    <button id="ClearField">Clear Branch and Batch</button>
+                </div>
+                
+
+                <h3>Mentors</h3>
+                <div class="mentors-box" id="mentorsList">
+                    <!-- List of mentors displayed here -->
+                </div>
+                <p><strong>Number of Mentors:</strong> <span id="mentorCount">0</span></p>
+                <button id="addMentor">Add Mentor</button>
+                <button id="clearMentor">Clear Mentor List</button>
+                <input type="text" id="mentorNameInput" placeholder="Enter Mentor Name" style="display:none;">
+                <div class="button-group">
+                    <button id="saveMentor" style="display:none;">Save Mentor</button>
+                    <button id="cancelMentor" style="display:none;">Cancel</button>
+                </div>
+                
+                <h5>Upload Mentor File</h5>
+                <input type="file" id="mentorFileInput" accept=".txt, .xls, .xlsx">
+                <br>
+                
+                
+                <!-- Student Section -->
+                <h3>Students</h3>
+                <div class="students-box" id="studentsList">
+                <!-- List of students displayed here -->
+                </div>
+                <p><strong>Number of Students:</strong> <span id="studentCount">0</span></p>
+                <button id="addStudent">Add Student</button>
+                <button id="clearStudent">Clear Student List</button>
+                <input type="text" id="studentNameInput" placeholder="Enter Student Name" style="display:none;">
+                <div class="button-group">
+                    <button id="saveStudent" style="display:none;">Save Student</button>
+                    <button id="cancelStudent" style="display:none;">Cancel</button>
+                </div>
+
+                <h5>Upload Student File</h5>
+                <input type="file" id="studentFileInput" accept=".txt, .xls, .xlsx">
+                <br>
+                
+
+                <div id="buttonContainer">
+                    <button id="backButton">Back</button>
+                    <button id="nextButton" style="display: none;">Next</button>
+                    <button id="take">Take Details</button>
+                </div>
+                
+            </div>
+        
+    </div>
+    <script src="{{ url_for('static', filename='admin-script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+</body>
+</html>

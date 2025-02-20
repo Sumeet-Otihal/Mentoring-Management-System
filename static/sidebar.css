@@ -1,0 +1,110 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Sidebar Container */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #184a7c; /* Dark blue background */
+    color: #ecf0f1; /* Light text color */
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-top-right-radius: 40px; /* Smooth top-right corner */
+    border-bottom-right-radius: 40px; /* Smooth bottom-right corner */
+    overflow: hidden;
+    padding: 0; /* Ensure no unwanted padding */
+}
+
+/* Logo Section */
+.sidebar-logo {
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar-logo img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full-width */
+}
+
+.nav-links li {
+    width: 100%;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ecf0f1; /* Light text */
+    padding: 12px 20px; /* Uniform spacing */
+    margin: 0; /* Remove default margin */
+    width: 100%;
+    box-sizing: border-box; /* Prevent overflow due to padding */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.nav-links a span {
+    margin-left: 10px;
+    flex-grow: 1; /* Take remaining space */
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: #5a8bb5; /* Softer blue highlight */
+    color: #ffffff;
+    border-left: 4px solid #76981b; /* Highlight with left border */
+}
+
+/* Footer Section for Logout */
+.sidebar-footer {
+    margin-top: auto; /* Push footer to the bottom */
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-footer a {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar-footer a:hover {
+    background-color: #76981b;
+    color: #ffffff;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Inherits text color */
+}

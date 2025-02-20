@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='student-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+</head>
+<body data-student-id="{{ student.id }}">
+    <!-- Include sidebar2.html -->
+    {% include 'sidebar2.html' %}
+    <div class="container">
+        <!-- Left Side: Student Details and Credentials -->
+        <div class="left-panel">
+            <h2>Student Details</h2>
+            <form id="studentDetailsForm">
+                <!-- Student ID -->
+                <div class="detail-row">
+                    <!-- Hidden ID Field -->
+                    <span id="studentID" style="display: none;">{{ student.id }}</span>
+                    <input type="hidden" id="editStudentID" value="{{ student.id }}" />
+                
+                    <!-- Visible USN Field -->
+                    <strong>USN:</strong>
+                    <span id="StudentUSN">{{ student.usn }}</span>
+                    <input type="text" id="editStudentUSN" value="{{ student.usn }}" placeholder="Enter student USN" style="display: none;" />
+                </div>
+                <!-- Student Name -->
+                <div class="detail-row">
+                    <strong>Name:</strong>
+                    <span id="studentName">{{ student.name }}</span>
+                    <input type="text" id="editStudentName" value="{{ student.name }}" style="display:none;" />
+                </div>
+        
+                <!-- Student Batch -->
+                <div class="detail-row">
+                    <strong>Batch:</strong>
+                    <span id="studentBatch">{{ student.batch }}</span>
+                    <input type="text" id="editStudentBatch" value="{{ student.batch }}" style="display:none;" />
+                </div>
+        
+                <!-- Student Branch -->
+                <div class="detail-row">
+                    <strong>Branch:</strong>
+                    <span id="studentBranch">{{ student.branch }}</span>
+                    <input type="text" id="editStudentBranch" value="{{ student.branch }}" style="display:none;" />
+                </div>
+        
+                <!-- Mentor Name -->
+                <div class="detail-row">
+                    <strong>Mentor:</strong>
+                    <span id="studentMentor">{{ student.mentor_name }}</span>
+                    <input type="text" id="editStudentMentor" value="{{ student.mentor_name }}" style="display:none;" />
+                </div>
+        
+                <!-- Contact -->
+                <div class="detail-row">
+                    <strong>Contact:</strong>
+                    <span id="studentContact">{{ student.contact }}</span>
+                    <input type="text" id="editStudentContact" value="{{ student.contact }}" style="display:none;" />
+                </div>
+        
+                <!-- Email -->
+                <div class="detail-row">
+                    <strong>Email:</strong>
+                    <span id="studentEmail">{{ student.email }}</span>
+                    <input type="text" id="editStudentEmail" value="{{ student.email }}" style="display:none;" />
+                </div>
+        
+                <!-- Address -->
+                <div class="detail-row">
+                    <strong>Address:</strong>
+                    <span id="studentAddress">{{ student.address }}</span>
+                    <input type="text" id="editStudentAddress" value="{{ student.address }}" style="display:none;" />
+                </div>
+        
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="button" id="editDetailsButton">Edit Details</button>
+                    <button type="button" id="saveDetailsButton" style="display:none;">Save</button>
+                    <button type="button" id="cancelEditButton" style="display:none;">Cancel</button>
+                </div>
+            </form>
+        
+            <div class="student-credentials-section">
+                <h3>Student Credentials</h3>
+                <form id="studentCredentialsForm">
+                    <!-- Username -->
+                    <div class="detail-row">
+                        <strong>Username:</strong>
+                        <span id="studentUsername">{{ credentials.username }}</span>
+                        <input type="text" id="editStudentUsername" value="{{ credentials.username }}" style="display:none;" />
+                    </div>
+        
+                    <!-- Password -->
+                    <div class="detail-row">
+                        <strong>Password:</strong>
+                        <span id="studentPassword">{{ "******" if credentials and credentials.password else "Not Set" }}</span>
+                        <input type="password" id="editStudentPassword" value="{{ credentials.password }}" style="display:none;" />
+                    </div>
+        
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button type="button" id="editCredentialsButton">Edit Credentials</button>
+                        <button type="button" id="saveCredentialsButton" style="display:none;">Save</button>
+                        <button type="button" id="cancelCredentialsButton" style="display:none;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+
+        <!-- Right Side: Placeholder or Additional Content -->
+        <div class="right-panel">
+            <h2>Additional Details</h2>
+            <div class="detail-row">
+                <strong>DOB*:</strong>
+                <span id="studentDOB">{{ student.dob }}</span>
+                <input type="text" id="editStudentDOB" value="{{ student.dob or '' }}" style="display:none;" />
+            </div>
+            <div class="detail-row">
+                <strong>Blood Group:</strong>
+                <span id="studentBGroup">{{ student.blood_group }}</span>
+                <input type="text" id="editStudentBGroup" value="{{ student.blood_group or '' }}" style="display:none;" />
+            </div>            
+            <div class="detail-row">
+                <strong>Hobbies:</strong>
+                <span id="studentHobbies">{{ student.hobbies }}</span>
+                <input type="text" id="editStudentHobbies" value="{{ student.hobbies or '' }}" style="display:none;" />
+            </div>
+            <div class="detail-row">
+                <strong>Father's name:</strong>
+                <span id="studentFName">{{ student.father_name }}</span>
+                <input type="text" id="editStudentFName" value="{{ student.father_name or '' }}" style="display:none;" />
+            </div>
+            <div class="detail-row">
+                <strong>Father's Contact:</strong>
+                <span id="studentFContact">{{ student.father_contact }}</span>
+                <input type="text" id="editStudentFContact" value="{{ student.father_contact or '' }}" style="display:none;" />
+            </div>
+            <div class="detail-row">
+                <strong>Mother's name:</strong>
+                <span id="studentMName">{{ student.mother_name }}</span>
+                <input type="text" id="editStudentMName" value="{{ student.mother_name or '' }}" style="display:none;" />
+            </div>
+            <div class="detail-row">
+                <strong>Mother's Contact:</strong>
+                <span id="studentMContact">{{ student.mother_contact }}</span>
+                <input type="text" id="editStudentMContact" value="{{ student.mother_contact or '' }}" style="display:none;" />
+            </div>            
+
+            <div id="buttonContainer">
+                <button id="backButton">Mentor Dashboard</button>
+                <button id="academicButton" style="display: none;">Academic Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='student-script.js') }}"></script>
+</body>
+</html>
